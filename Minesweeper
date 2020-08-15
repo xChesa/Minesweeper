@@ -166,7 +166,7 @@ public class Minesweeper {
 
         for (int i : minePositions) {
             int posX = i % boardWidth;
-            int posY = i / boardHeight;
+            int posY = i / boardWidth;
             solutionBoard[posY][posX] = 'X';
         }
         updateAllNeighbors();
@@ -182,25 +182,6 @@ public class Minesweeper {
         System.out.println("-|" + "-".repeat(boardWidth)  + "|");
         int rowCount = 1;
         for (char[] row : playBoard) {
-            System.out.print(rowCount + "|");
-            rowCount++;
-            for (char ch : row) {
-                System.out.print(ch);
-            }
-            System.out.println("|");
-        }
-        System.out.println("-|" + "-".repeat(boardWidth)  + "|");
-    }
-    public void printSolBoard() {
-        System.out.println();
-        System.out.print(" |");
-        for (int i = 1; i <= boardWidth; i++) {
-            System.out.print(i);
-        }
-        System.out.println("|");
-        System.out.println("-|" + "-".repeat(boardWidth)  + "|");
-        int rowCount = 1;
-        for (char[] row : solutionBoard) {
             System.out.print(rowCount + "|");
             rowCount++;
             for (char ch : row) {
