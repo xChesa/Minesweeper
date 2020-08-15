@@ -1,0 +1,39 @@
+package minesweeper;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("How many mines do you want on the field? ");
+        int numMines = Integer.parseInt(scan.nextLine().trim());
+
+        Minesweeper minesweeper = new Minesweeper(9, 9, numMines);
+
+        while (!minesweeper.isGameOver()) {
+            System.out.print("Set/unset mines marks or claim a cell as free: ");
+            String[] input = scan.nextLine().split(" ");
+            int x = Integer.parseInt(input[0]);
+            int y = Integer.parseInt(input[1]);
+            String command = input[2].toLowerCase();
+            switch (command) {
+                case "free":
+                    if (minesweeper.doMove(y, x)) {
+                        minesweeper.printBoard();
+                    }
+                    break;
+                case "mine":
+                    if (minesweeper.placeFlag(y, x)) {
+                        minesweeper.printBoard();
+                    }
+                    break;
+            }
+        }
+        if (minesweeper.isPlayerWin()) {
+            System.out.println("Congratulations! You found all mines!");
+        } else {
+            System.out.println("You stepped on a mine and failed!");
+        }
+    }
+}
