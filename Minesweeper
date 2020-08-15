@@ -25,8 +25,6 @@ public class Minesweeper {
         extraFlags = new ArrayList<>();
         gameOver = false;
         createBoard();
-        //printBoard();
-        //hideMines();
         printBoard();
     }
 
@@ -39,20 +37,16 @@ public class Minesweeper {
         }
 
         char ch = playBoard[y][x];
-        //System.out.println(ch);
         if (ch == '.' || ch == '*') {
             numUncovered--;
             char tileValue = solutionBoard[y][x];
-            //System.out.println(tileValue);
             playBoard[y][x] = tileValue;
             if (tileValue == '/') {
                 for (int i = y - 1; i < y + 2; i++) {
                     if (i >= 0 && i < boardHeight) {
                         for (int j = x - 1; j < x + 2; j++) {
                             if (j >= 0 && j < boardWidth) {
-                                //if (playBoard[i][j] == '.' && solutionBoard[i][j] == '/') {
-                                    doMove(i + 1, j + 1);
-                                //}
+                                doMove(i + 1, j + 1);
                             }
                         }
                     }
@@ -84,9 +78,7 @@ public class Minesweeper {
         y--;
         char ch = playBoard[y][x];
         int pos = getPosFromCoords(y, x);
-        //System.out.println(pos);
         if (ch == '.') {
-            //System.out.println(".");
             playBoard[y][x] = '*';
             if (minePositions.contains(pos)) {
                 foundMinePositions.add(pos);
@@ -95,7 +87,6 @@ public class Minesweeper {
                 extraFlags.add(pos);
             }
         } else if (ch == '*') {
-            //System.out.println("*");
             playBoard[y][x] = '.';
             if (foundMinePositions.contains(pos)) {
                 minePositions.add(pos);
@@ -167,13 +158,11 @@ public class Minesweeper {
         for (int i = 0; i < numMines; i++) {
             int pos = random.nextInt(boardHeight * boardWidth);
             if (minePositions.contains(pos) || pos == safePos) {
-                //System.out.println("Duplicate " + pos + " caught!");
                 i--;
             } else {
                 minePositions.add(pos);
             }
         }
-        //System.out.println(minePositions.toString());
 
         for (int i : minePositions) {
             int posX = i % boardWidth;
